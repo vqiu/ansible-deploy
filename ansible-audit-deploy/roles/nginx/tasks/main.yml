@@ -1,0 +1,21 @@
+---
+
+- name: Ensure RPM official nginx key
+  rpm_key: key=http://nginx.org/keys/nginx_signing.key
+
+- name: Copy the nginx repo file
+  template:
+    src: nginx.repo.j2
+    dest: /etc/yum.repos.d/nginx.repo
+    mode: 0755
+
+- name: Install the nginx packages
+  yum: name={{ item }} state=present enablerepo="nginx"
+  with_items: "{{ nginx_pkgs_name }}"
+
+- name: Write the nginx.conf
+  template:
+    src: nginx.conf.j2
+    dest: "{{ nginx_conf_dir }}"
+    backup: yes
+  notify: restart nginx

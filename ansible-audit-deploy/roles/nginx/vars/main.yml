@@ -1,0 +1,39 @@
+---
+
+nginx_pkgs_name:
+  - nginx
+
+nginx_installation_version: stable
+
+nginx_binary_name: "nginx"
+nginx_service_name: "{{nginx_binary_name}}"
+nginx_conf_dir: /etc/nginx
+
+nginx_owner: wdf
+
+nginx_pid_file: '/var/run/{{nginx_service_name}}.pid'
+
+nginx_worker_processes: "{% if ansible_processor_vcpus is defined %}{{ ansible_processor_vcpus }}{% else %}auto{% endif %}"
+nginx_worker_rlimit_nofile: 1024
+nginx_log_dir: "/data/logs/nginx"
+nginx_error_log_level: "error"
+
+nginx_events_params:
+  - worker_connections {% if nginx_max_clients is defined %}{{nginx_max_clients}}{% else %}512{% endif %}
+
+nginx_sites:
+  default:
+
+nginx_http_default_params:
+  - sendfile "on"
+  - tcp_nopush "on"
+  - tcp_nodelay "on"
+  - keepalive_timeout "65"
+  - access_log "{{nginx_log_dir}}/access.log"
+  - "error_log {{nginx_log_dir}}/error.log {{nginx_error_log_level}}"
+  - server_tokens off
+  - server_names_hash_bucket_size "128"
+  - client_header_buffer_size "32k"
+  - large_client_header_buffers "4 32k"
+  - client_max_body_size "50m"
+  - types_hash_max_size 2048

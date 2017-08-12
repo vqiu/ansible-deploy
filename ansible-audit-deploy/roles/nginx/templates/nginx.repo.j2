@@ -1,0 +1,9 @@
+[nginx]
+name=nginx repo
+{% if nginx_installation_version == "stable" %}
+baseurl=http://nginx.org/packages/OS/OSRELEASE/$basearch/
+{% else %}
+baseurl=http://nginx.org/packages/mainline/OS/OSRELEASE/$basearch/
+{% endif %}
+gpgcheck=0
+enabled=1

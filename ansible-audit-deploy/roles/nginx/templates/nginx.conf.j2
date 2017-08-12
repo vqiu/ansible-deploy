@@ -1,0 +1,24 @@
+user {{ nginx_owner }}
+worker_processes {{ nginx_worker_processes }};
+{% if nginx_pid_file %}
+pid        {{ nginx_pid_file }};
+{% endif %}
+
+worker_rlimit_nofile {{ nginx_worker_rlimit_nofile }};
+
+events {
+{% for line in nginx_events_params %}
+  {{ line }};
+{% endfor %}
+}
+
+http {
+	include       mime.types;
+	default_type  application/octet-stream;
+
+{% for line in nginx_http_params %}
+  {{ line }};
+{% endfor %}
+
+	include conf.d/*.conf;
+}

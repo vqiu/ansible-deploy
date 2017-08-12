@@ -1,0 +1,20 @@
+---
+
+- name: restart nginx
+  debug: msg="checking config first"
+  changed_when: True
+  notify:
+    - check nginx configuration
+    - reload nginx
+
+- name: check nginx configuration
+  command: "{{ nginx_binary_name }} -t"
+  register: result
+  changed_when: "result.rc != 0"
+  check_mode: no
+
+- name: restart nginx
+  service:
+    name: "{{ nginx_service_name }}"
+    state: restarted
+    enabled: yes

@@ -24,7 +24,7 @@ nginx_events_params:
 nginx_sites:
   default:
 
-nginx_http_default_params:
+nginx_http_params:
   - sendfile "on"
   - tcp_nopush "on"
   - tcp_nodelay "on"

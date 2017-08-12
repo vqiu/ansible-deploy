@@ -9,11 +9,11 @@
 
 - name: Add configuration to GRUB - 1G
   shell: /tmp/modify_boot_cmd.sh
-    
+
 - name: Update GRUB configuration
-  command: grub2-mkconfig -o /etc/grub.cfg
+  command: grub2-mkconfig -o /boot/grub2/grub.cfg
 
 - name: Remove script file
   file:
     path: /tmp/modify_boot_cmd.sh
-    state: absent 
+    state: absent

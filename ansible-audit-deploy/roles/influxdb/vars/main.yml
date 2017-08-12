@@ -3,7 +3,7 @@
 influxdb_owner: influxdb
 influxdb_version: 1.3.2
 influxdb_rpm_url: https://down.vqiu.cn/package/platform/wdf/rpm/influxdb-{{ influxdb_version }}.x86_64.rpm
-influxdb_server_name: influxdb
+influxdb_service_name: influxdb
 influxdb_config_file: /etc/influxdb/influxdb.conf
 
 influxdb_data_dir: /data/dbs/influxdb/data
@@ -22,4 +22,3 @@ influxdb_http_auth_enabled: "false"
 influxdb_http_log_enabled: "true"
 
 influxdb_database_name: "audit"
-

@@ -24,8 +24,12 @@
     mode: 0644
     owner: "{{ influxdb_owner }}"
     group: "{{ influxdb_owner }}"
-  notify:
-    - restart influxdb
+
+- name: Startup service
+  service:
+    name: "{{ influxdb_service_name }}.service"
+    state: started
+    enabled: yes
 
 - name: Install requrements package by pip
   pip:

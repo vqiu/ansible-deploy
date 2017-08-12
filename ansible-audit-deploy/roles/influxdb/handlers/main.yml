@@ -1,7 +1,0 @@
----
-
-- name: restart influxdb
-  service:
-    name: "{{ influxdb_server_name }}.service"
-    state: restarted
-    enabled: yes

@@ -3,8 +3,8 @@ basic_selinux_file: /etc/selinux/config
 basic_selinux_stats: "Disabled"
 basic_terminal_timeout: 1800
 basic_install_pkgs:
- - libsemanage-python
  - libselinux-python
+ - libsemanage-python
  - policycoreutils-python
  - wget
  - net-tools

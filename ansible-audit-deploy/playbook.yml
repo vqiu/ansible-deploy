@@ -13,3 +13,4 @@
     - hugepage
     - influxdb
     - php-fpm
+    - nginx

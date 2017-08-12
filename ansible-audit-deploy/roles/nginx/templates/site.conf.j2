@@ -1,8 +1,8 @@
 server {
 	server_name _;
-	listen {{ nginx_sites['listen_port'] }} default_server reuseport;
+	listen {{ nginx_sites.listen_port }} default_server reuseport;
 
-	root  {{ nginx_sites['root'] }};
+	root  {{ nginx_sites.root }};
 
 	location / {
 		try_files $uri $uri/ /index.php?$query_string;

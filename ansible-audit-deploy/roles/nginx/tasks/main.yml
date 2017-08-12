@@ -34,5 +34,5 @@
 - name: Write the virtual host file
   template:
     src: site.conf.j2
-    dest: "{{ nginx_site.file_path }}"
+    dest: "{{ nginx_sites.file_path }}"
   notify: restart nginx

@@ -18,6 +18,7 @@ yum_pkgs:
 owner: wdd
 owner_uid: 2000
 owner_gid: 2000
+php_fpm_log_dir: /data/logs/php-fpm
 session_dir: /var/lib/php/session
 php_ini_file: "/etc/opt/remi/{{ version }}/php.ini"
 php_fpm_file: "/etc/opt/remi/{{ version }}/php-fpm.d/www.conf"

@@ -20,13 +20,12 @@ nginx_error_log_level: error
 
 nginx_events_params:
   - worker_connections 512
-  - use_epoll on
 
 nginx_sites:
   default:
 
 nginx_http_params:
-  - charset utf-8;
+  - charset utf-8
   - sendfile on
   - tcp_nopush on
   - tcp_nodelay on

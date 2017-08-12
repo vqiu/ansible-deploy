@@ -1,4 +1,4 @@
-user {{ nginx_owner }}
+user {{ nginx_owner }};
 worker_processes {{ nginx_worker_processes }};
 {% if nginx_pid_file %}
 pid        {{ nginx_pid_file }};

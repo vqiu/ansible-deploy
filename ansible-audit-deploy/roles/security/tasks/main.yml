@@ -10,5 +10,5 @@
   when: security_autoupdate_enabled
 
 # secure_terminal_timeout
-- include: secure_terminal_timeout.yml
+- include: terminal_timeout.yml
   when: security_terminal_timeout_enabled

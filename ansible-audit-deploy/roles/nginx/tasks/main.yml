@@ -1,5 +1,15 @@
 ---
 
+- name: Create directory for nginx
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0755
+    owner: "{{ nginx_owner }}"
+    group: "{{ nginx_owner }}"
+  with_items:
+    - "{{ nginx_log_dir }}"
+
 - name: Ensure RPM official nginx key
   rpm_key: key=http://nginx.org/keys/nginx_signing.key
 

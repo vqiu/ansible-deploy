@@ -22,5 +22,6 @@ security_sudoers_passworded: []
 security_autoupdate_enabled: false
 security_autoupdate_blacklist: []
 
+security_terminal_timeout_file: /etc/profile.d/terminal_timeout.sh
 security_terminal_timeout_enabled: true
 security_terminal_timeout: 600

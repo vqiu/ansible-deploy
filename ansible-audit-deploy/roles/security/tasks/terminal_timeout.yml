@@ -3,5 +3,5 @@
 - name: Setup timeout for terminal
   template:
     src: terminal_timeout.sh.j2
-    dest: /etc/profile/terminal_timeout.sh
+    dest: "{{ security_terminal_timeout_file }}"
     mode: 0755

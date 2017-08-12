@@ -22,38 +22,38 @@ basic_install_pkgs:
 
 basic_time_zone: Asia/Shanghai
 basic_sysctl_file: /etc/sysctl.conf
-basic_sysctl_fs_file-max: 1024000
-basic_sysctl_vm_swappiness: 1
-basic_sysctl_vm_dirty_ratio: 60
-basic_sysctl_vm_dirty_background_ratio: 2
-basic_sysctl_net_ipv4_tcp_synack_retries: 2
-basic_sysctl_net_ipv4_ip_local_port_range: 1025 65534
-basic_sysctl_net_ipv4_tcp_rfc1337: 1
-basic_sysctl_net_ipv4_tcp_fin_timeout: 15
-basic_sysctl_net_ipv4_tcp_keepalive_time: 300
-basic_sysctl_net_ipv4_tcp_keepalive_probes: 5
-basic_sysctl_net_ipv4_tcp_keepalive_intvl: 15
-basic_sysctl_net_core_rmem_default: 31457280
-basic_sysctl_net_core_rmem_max: 12582912
-basic_sysctl_net_core_wmem_default: 31457280
-basic_sysctl_net_core_wmem_max: 12582912
-basic_sysctl_net_core_somaxconn: 65535
-basic_sysctl_net_core_netdev_max_backlog: 65536
-basic_sysctl_net_ipv4_tcp_max_syn_backlog: 65536
-basic_sysctl_net_core_optmem_max: 25165824
-basic_sysctl_net_ipv4_tcp_mem: 65536 131072 262144
-basic_sysctl_net_ipv4_udp_mem: 65536 131072 262144
-basic_sysctl_net_ipv4_tcp_rmem: 8192 87380 16777216
-basic_sysctl_net_ipv4_udp_rmem_min: 16384
-basic_sysctl_net_ipv4_tcp_wmem: 8192 65536 16777216
-basic_sysctl_net_ipv4_udp_wmem_min: 16384
-basic_sysctl_net_ipv4_tcp_max_tw_buckets: 1440000
-basic_sysctl_net_ipv4_tcp_tw_recycle: 1
-basic_sysctl_net_ipv4_tcp_tw_reuse: 1
-basic_sysctl_net_ipv6_conf_all_disable_ipv6: 1
-basic_sysctl_net_ipv6_conf_default_disable_ipv6: 1
-basic_sysctl_net_ipv6_conf_lo_disable_ipv6: 1
-
+basic_sysctl_config_params:
+  - fs.file-max = 2097152
+  - vm.swappiness = 1
+  - vm.dirty_ratio = 60
+  - vm.dirty_background_ratio = 2
+  - net.ipv4.tcp_synack_retries = 2
+  - net.ipv4.ip_local_port_range = 1025 65534
+  - net.ipv4.tcp_rfc1337 = 1
+  - net.ipv4.tcp_fin_timeout = 15
+  - net.ipv4.tcp_keepalive_time = 300
+  - net.ipv4.tcp_keepalive_probes = 5
+  - net.ipv4.tcp_keepalive_intvl = 15
+  - net.core.rmem_default = 31457280
+  - net.core.rmem_max = 12582912
+  - net.core.wmem_default = 31457280
+  - net.core.wmem_max = 12582912
+  - net.core.somaxconn = 65535
+  - net.core.netdev_max_backlog = 65536
+  - net.ipv4.tcp_max_syn_backlog = 65536
+  - net.core.optmem_max = 25165824
+  - net.ipv4.tcp_mem = 65536 131072 262144
+  - net.ipv4.udp_mem = 65536 131072 262144
+  - net.ipv4.tcp_rmem = 8192 87380 16777216
+  - net.ipv4.udp_rmem_min = 16384
+  - net.ipv4.tcp_wmem = 8192 65536 16777216
+  - net.ipv4.udp_wmem_min = 16384
+  - net.ipv4.tcp_max_tw_buckets = 1440000
+  - net.ipv4.tcp_tw_recycle = 1
+  - net.ipv4.tcp_tw_reuse = 1
+  - net.ipv6.conf.all.disable_ipv6 = 1
+  - net.ipv6.conf.default.disable_ipv6 = 1
+  - net.ipv6.conf.lo.disable_ipv6 = 1
 
 basic_limited_file: /etc/security/limits.d/10-limited.conf
 basic_max_limited_files: 1024000

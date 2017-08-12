@@ -1,0 +1,31 @@
+server {
+	server_name _;
+	listen {{ nginx_sites.listen_port }} default_server reuseport;
+
+	root  {{ nginx_sites.root }};
+
+	location / {
+		try_files $uri $uri/ /index.php?$query_string;
+		index /dist/index.html;
+	}
+
+	location = /favicon.ico { log_not_found off; access_log off; }
+	location = /robots.txt  { log_not_found off; access_log off; }
+
+	location ~* \.(jpg|jpeg|png|gif|ico|tif|tiff)$ { expires max;	}
+
+	location ~* \.(json|xml|txt|js|css)$ { expires 15d;	}
+
+	location ~* [^/]\.php(/|$) {
+		try_files $fastcgi_script_name =404;
+
+		set $path_info $fastcgi_path_info;
+		fastcgi_param PATH_INFO $path_info;
+
+		fastcgi_param HTTP_PROXY "";
+		fastcgi_pass 127.0.0.1:9000;
+		include fastcgi.conf;
+	}
+
+	access_log {{ nginx_log_dir }}/access.log;
+}

@@ -9,6 +9,7 @@
     group: "{{ nginx_owner }}"
   with_items:
     - "{{ nginx_log_dir }}"
+    - "{{ nginx_root_dir }}"
 
 - name: Ensure RPM official nginx key
   rpm_key: key=http://nginx.org/keys/nginx_signing.key
@@ -28,4 +29,10 @@
     src: nginx.conf.j2
     dest: "{{ nginx_conf_dir }}/nginx.conf"
     backup: yes
+  notify: restart nginx
+
+- name: Write the virtual host file
+  template:
+    src: site.conf.j2
+    dest: "{{ nginx_site.file_path }}"
   notify: restart nginx

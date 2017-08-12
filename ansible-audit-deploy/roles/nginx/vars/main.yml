@@ -16,13 +16,11 @@ nginx_pid_file: '/var/run/{{nginx_service_name}}.pid'
 nginx_worker_processes: "{% if ansible_processor_vcpus is defined %}{{ ansible_processor_vcpus }}{% else %}auto{% endif %}"
 nginx_worker_rlimit_nofile: 1024
 nginx_log_dir: /data/logs/nginx
+nginx_root_dir: /data/logs/nginx
 nginx_error_log_level: error
 
 nginx_events_params:
   - worker_connections 512
-
-nginx_sites:
-  default:
 
 nginx_http_params:
   - charset utf-8
@@ -41,3 +39,8 @@ nginx_http_params:
   - open_file_cache max=204800 inactive=20s
   - open_file_cache_min_uses 1
   - open_file_cache_valid 30s
+
+nginx_sites:
+  - file_path: /etc/nginx/conf.d/default.conf
+  - listen_port: 80
+  - root: /opt/wdf/www/isms/public

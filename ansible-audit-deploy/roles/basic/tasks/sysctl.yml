@@ -1,0 +1,10 @@
+---
+- name: Write the sysctl.conf file
+  template:
+    src: sysctl.conf.j2
+    dest: "{{ basic_sysctl_file }}"
+
+- name: Modify system limited files
+  template:
+    src: 10-limited.conf.j2
+    dest: "{{ basic_limited_file }}"

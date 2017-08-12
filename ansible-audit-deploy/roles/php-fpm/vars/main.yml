@@ -1,0 +1,55 @@
+---
+
+remi_repo_url: https://mirrors.tuna.tsinghua.edu.cn/remi/enterprise/remi-release-7.rpm
+version: php71
+service_name: "{{ version }}-php-fpm.service"
+yum_pkgs:
+  - "{{ version }}-php-fpm"
+  - "{{ version }}-php-pdo"
+  - "{{ version }}-php-opcache"
+  - "{{ version }}-php-mcrypt"
+  - "{{ version }}-php-curl"
+  - "{{ version }}-php-common"
+  - "{{ version }}-php-mbstring"
+  - "{{ version }}-php-xml"
+  - "{{ version }}-php-cli"
+  - "{{ version }}-php-devel"
+
+owner: wdd
+owner_uid: 2000
+owner_gid: 2000
+session_dir: /var/lib/php/session
+php_ini_file: "/etc/opt/remi/{{ version }}/php.ini"
+php_fpm_file: "/etc/opt/remi/{{ version }}/php-fpm.d/www.conf"
+
+php_ini_config_params:
+  - expose_php=Off
+  - max_execution_time=300
+  - date.timezone=PRC
+  - session_save_path="{{ session_dir }}"
+  - upload_max_filesize=10M
+  - post_max_size=20M
+  - memory_limit=128M
+
+php_fpm_config_params:
+ - [www]
+ - user = "{{ owner}}"
+ - group = "{{ owner }}"
+ - listen = 127.0.0.1:9000
+ - listen.owner = "{{ owner }}"
+ - listen.group = "{{ owner }}"
+ - listen.allowed_clients = 127.0.0.1
+ - pm = static
+ - pm.max_children = 50
+ - pm.start_servers = 5
+ - pm.min_spare_servers = 5
+ - pm.max_spare_servers = 35
+ - slowlog = "{{ php_fpm_log_dir }}/www-slow.log"
+ - request_slowlog_timeout = 10s
+ - request_terminate_timeout = 300
+ - rlimit_files = 4096
+ - php_admin_value[error_log] = "{{ php_fpm_log_dir }}/error.log"
+ - php_admin_flag[log_errors] = on
+ - php_value[session.save_handler] = files
+ - php_value[session.save_path] = "{{ session_dir }}"
+ - php_value[soap.wsdl_cache_dir]  = /var/opt/remi/php71/lib/php/wsdlcache

@@ -1,0 +1,12 @@
+---
+  
+- name: Disable unnecessary service[s]
+  service:
+    name: "{{ item }}"
+    state: stopped
+    enabled: no
+  with_items:
+    - postfix.service
+    - lvm2-monitor.service
+#    - auditd.service
+    - irqbalance.service

@@ -1,0 +1,14 @@
+---
+
+# SSH
+- include: ssh.yml
+# Sudoer
+- include: sudoer.yml
+
+# Autoupdate
+- include: autoupdate.yml
+  when: security_autoupdate_enabled
+
+# secure_terminal_timeout
+- include: secure_terminal_timeout.yml
+  when: security_terminal_timeout_enabled

@@ -1,0 +1,19 @@
+---
+# static
+- include: static.yml
+  when: hugepages_mode == "static"
+
+# dynamic.yml
+- include: dynamic.yml
+  when: hugepages_mode == "dynamic"
+
+- name: Add configuration to GRUB - 1G
+  shell: /tmp/modify_boot_cmd.sh
+    
+- name: Update GRUB configuration
+  command: grub2-mkconfig -o /etc/grub.cfg
+
+- name: Remove script file
+  file:
+    path: /tmp/modify_boot_cmd.sh
+    state: absent 

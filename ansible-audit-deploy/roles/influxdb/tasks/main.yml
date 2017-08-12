@@ -1,0 +1,40 @@
+---
+
+- name: Install influxdb
+  yum:
+    name: "{{ influxdb_rpm_url }}"
+    state: present
+
+- name: Create directory for influxdb
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0755
+    owner: "{{ influxdb_owner }}"
+    group: "{{ influxdb_owner}}"
+  with_items:
+    - "{{ influxdb_data_dir }}"
+    - "{{ influxdb_meta_dir }}"
+    - "{{ influxdb_wal_dir }}"
+
+- name: Write the config file
+  template:
+    src: influxdb.conf.j2
+    dest: "{{ influxdb_config_file }}"
+    mode: 0644
+    owner: "{{ influxdb_owner }}"
+    group: "{{ influxdb_owner }}"
+  notify:
+    - restart influxdb
+
+- name: Install requrements package by pip
+  pip:
+    name: influxdb
+    extra_args: -i https://pypi.tuna.tsinghua.edu.cn/simple
+
+- name: Create database
+  influxdb_database:
+      hostname: "{{ influxdb_http_bind_address.split(':')[0] }}"
+      database_name: "{{ influxdb_database_name }}"
+      state: present
+  ignore_errors: True

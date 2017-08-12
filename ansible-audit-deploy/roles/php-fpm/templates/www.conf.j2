@@ -1,0 +1,5 @@
+{% if php_fpm_config_params is defined %}
+{% for line in php_fpm_config_params %}
+{{ line }}
+{% endfor %}
+{% endif %}

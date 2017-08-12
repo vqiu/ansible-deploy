@@ -1,0 +1,15 @@
+---
+# yum-repos
+- include: yum-repos.yml
+
+# selinux
+- include: selinux.yml
+
+# disable_service
+- include: disable_service.yml
+
+# sysctl
+- include: sysctl.yml
+
+- name: Set timezone
+  shell: /usr/bin/timedatectl set-timezone "{{ basic_time_zone }}"

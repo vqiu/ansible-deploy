@@ -1,0 +1,59 @@
+---
+basic_selinux_file: /etc/selinux/config
+basic_selinux_stats: "Disabled"
+basic_terminal_timeout: 1800
+basic_install_pkgs:
+ - libsemanage-python
+ - libselinux-python
+ - policycoreutils-python
+ - wget
+ - net-tools
+ - bash-completion
+ - libhugetlbfs
+ - bzip2
+ - unzip
+ - lsof
+ - htop
+ - mtr
+ - vim-enhanced
+ - git
+ - epel-release
+ - python-pip
+
+basic_time_zone: Asia/Shanghai
+basic_sysctl_file: /etc/sysctl.conf
+basic_sysctl_fs_file-max: 1024000
+basic_sysctl_vm_swappiness: 1
+basic_sysctl_vm_dirty_ratio: 60
+basic_sysctl_vm_dirty_background_ratio: 2
+basic_sysctl_net_ipv4_tcp_synack_retries: 2
+basic_sysctl_net_ipv4_ip_local_port_range: 1025 65534
+basic_sysctl_net_ipv4_tcp_rfc1337: 1
+basic_sysctl_net_ipv4_tcp_fin_timeout: 15
+basic_sysctl_net_ipv4_tcp_keepalive_time: 300
+basic_sysctl_net_ipv4_tcp_keepalive_probes: 5
+basic_sysctl_net_ipv4_tcp_keepalive_intvl: 15
+basic_sysctl_net_core_rmem_default: 31457280
+basic_sysctl_net_core_rmem_max: 12582912
+basic_sysctl_net_core_wmem_default: 31457280
+basic_sysctl_net_core_wmem_max: 12582912
+basic_sysctl_net_core_somaxconn: 65535
+basic_sysctl_net_core_netdev_max_backlog: 65536
+basic_sysctl_net_ipv4_tcp_max_syn_backlog: 65536
+basic_sysctl_net_core_optmem_max: 25165824
+basic_sysctl_net_ipv4_tcp_mem: 65536 131072 262144
+basic_sysctl_net_ipv4_udp_mem: 65536 131072 262144
+basic_sysctl_net_ipv4_tcp_rmem: 8192 87380 16777216
+basic_sysctl_net_ipv4_udp_rmem_min: 16384
+basic_sysctl_net_ipv4_tcp_wmem: 8192 65536 16777216
+basic_sysctl_net_ipv4_udp_wmem_min: 16384
+basic_sysctl_net_ipv4_tcp_max_tw_buckets: 1440000
+basic_sysctl_net_ipv4_tcp_tw_recycle: 1
+basic_sysctl_net_ipv4_tcp_tw_reuse: 1
+basic_sysctl_net_ipv6_conf_all_disable_ipv6: 1
+basic_sysctl_net_ipv6_conf_default_disable_ipv6: 1
+basic_sysctl_net_ipv6_conf_lo_disable_ipv6: 1
+
+
+basic_limited_file: /etc/security/limits.d/10-limited.conf
+basic_max_limited_files: 1024000

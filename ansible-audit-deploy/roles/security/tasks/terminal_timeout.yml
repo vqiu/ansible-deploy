@@ -1,0 +1,7 @@
+---
+
+- name: Setup timeout for terminal
+  template:
+    src: terminal_timeout.sh.j2
+    dest: /etc/profile/terminal_timeout.sh
+    mode: 0755

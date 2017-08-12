@@ -1,0 +1,7 @@
+---
+
+- name: enable hugetlb-gigantic-pages
+  service:
+    name: "{{ hugepage_service_name }}"
+    state: stopped
+    enabled: yes

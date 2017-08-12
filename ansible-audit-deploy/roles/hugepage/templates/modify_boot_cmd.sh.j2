@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+grep default_hugepagesz {{ boot_template_file }} >/dev/null
+if [[ $? != 0 ]]
+then
+{% if hugepages_mode == "static" %}
+    sed -i 's/GRUB_CMDLINE_LINUX=\"\(.*\)\"/GRUB_CMDLINE_LINUX=\"\1 default_hugepagesz=1G hugepagesz=1G hugepages={{ hugepage_size }}\"/' {{ boot_template_file }}
+
+{% else %}
+    sed -i 's/GRUB_CMDLINE_LINUX=\"\(.*\)\"/GRUB_CMDLINE_LINUX=\"\1 default_hugepagesz=1G hugepagesz=1G \"/' {{ boot_template_file }}
+{% endif %}
+fi

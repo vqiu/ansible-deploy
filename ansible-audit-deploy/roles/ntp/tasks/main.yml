@@ -1,0 +1,12 @@
+---
+
+- name: Install the required packages in Redhat derivatives
+  yum: name=ntp state={{ ntp_pkg_state }}
+
+- name: Copy the ntp.conf template file
+  template: src=ntp.conf.j2 dest=/etc/ntp.conf
+  notify:
+  - restart ntp
+
+- name: Makesure ntp service startup
+  service: name={{ ntp_service_name }} state={{ ntp_service_state }} enabled={{ ntp_service_enabled }}

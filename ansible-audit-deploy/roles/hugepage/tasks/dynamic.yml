@@ -1,0 +1,21 @@
+---
+
+- name: Write to the script file
+  template:
+    src: modify_boot_cmd.sh.j2
+    dest: /tmp/modify_boot_cmd.sh
+    mode: 0755
+
+- name: Copy hugepage control script to system
+  template:
+      src: hugetlb-reserve-pages.j2
+      dest: /usr/lib/systemd/hugetlb-reserve-pages
+      mode: 0755
+
+- name: Copy hugepage service to system
+  template:
+      src: hugetlb-gigantic-pages.service.j2
+      dest: /usr/lib/systemd/system/hugetlb-gigantic-pages.service
+      mode: 0755
+  notify:
+    - enable hugetlb-gigantic-pages

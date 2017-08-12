@@ -1,0 +1,9 @@
+---
+
+- name:  Check current kernel version and system_kernel_version
+  fail: msg="The system version kernel does not match, exit"
+  when: 
+    - ansible_kernel != "3.10.0-327.el7.x86_64"
+
+- name:  Passed
+  debug: msg="The kernel version has been passed and the task is executed immediately"

@@ -4,14 +4,13 @@ nginx_pkgs_name:
   - nginx
 
 nginx_installation_version: stable
-
 nginx_binary_name: "nginx"
 nginx_service_name: "{{nginx_binary_name}}"
 nginx_conf_dir: /etc/nginx
 
 nginx_owner: wdd
 
-nginx_pid_file: '/var/run/{{nginx_service_name}}.pid'
+nginx_pid_file: "/var/run/{{nginx_service_name}}.pid"
 
 nginx_worker_processes: "{% if ansible_processor_vcpus is defined %}{{ ansible_processor_vcpus }}{% else %}auto{% endif %}"
 nginx_worker_rlimit_nofile: 1024

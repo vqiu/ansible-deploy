@@ -12,5 +12,6 @@
     - security
     - hugepage
     - influxdb
+    - mariadb
     - php-fpm
     - nginx

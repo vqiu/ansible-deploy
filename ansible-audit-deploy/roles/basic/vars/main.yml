@@ -7,6 +7,7 @@ basic_install_pkgs:
 # - libsemanage-python
 # - policycoreutils-python
  - wget
+ - lrzsz
  - net-tools
  - bash-completion
  - libhugetlbfs

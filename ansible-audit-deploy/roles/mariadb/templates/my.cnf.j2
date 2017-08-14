@@ -1,0 +1,18 @@
+[mysqld]
+bind-address={{ mariadb_bind_address }}
+datadir={{ mariadb_data_dir }}
+socket=/var/lib/mysql/mysql.sock
+symbolic-links=0
+collation-server = utf8_unicode_ci
+character-set-server = utf8
+
+[mysqld_safe]
+log-error=/var/log/mariadb/mariadb.log
+pid-file=/var/run/mariadb/mariadb.pid
+
+#!includedir /etc/my.cnf.d
+
+[client]
+default-character-set=utf8
+[mysql]
+default-character-set=utf8

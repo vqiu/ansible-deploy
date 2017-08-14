@@ -2,5 +2,5 @@
 
 boot_template_file: /etc/default/grub
 hugepage_service_name: hugetlb-gigantic-pages
-hugepage_size: 48
+hugepage_size: 40
 hugepages_mode: "static"

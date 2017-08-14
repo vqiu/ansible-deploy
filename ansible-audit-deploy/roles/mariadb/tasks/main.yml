@@ -1,5 +1,9 @@
 ---
 
+- name: Install the mariadb packages
+  yum: name={{ item }} state=present
+  with_items: "{{ mariadb_install_pkgs }}"
+
 - name: Create directory for mariadb
   file:
     path: "{{ item }}"
@@ -9,10 +13,6 @@
     group: "{{ mariadb_owner }}"
   with_items:
     - "{{ mariadb_data_dir }}"
-
-- name: Install the mariadb packages
-  yum: name={{ item }} state=present
-  with_items: "{{ mariadb_install_pkgs }}"
 
 - name: Update the mairadb server config file
   template:

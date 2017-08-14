@@ -1,23 +1,23 @@
 ---
 
-- name: Remove old yum file(s)
-  file:
-    path: "{{ item }}"
-    state: absent
-  with_fileglob:
-    - "/etc/yum.repos.d/*"
+- name: Install package from yum
+  yum:
+    name: "{{ basic_install_pkgs }}"
+    state: latest
 
-- name: Setup base yum mirrors
-  template:
-     src: CentOS7-Base-163.repo.j2
-     dest: /etc/yum.repos.d/CentOS7-Base-163.repo
+#- name: Remove old yum file(s)
+#  file:
+#    path: "{{ item }}"
+#    state: absent
+#  with_fileglob:
+#    - "/etc/yum.repos.d/*"
+
+#- name: Setup base yum mirrors
+#  template:
+#     src: CentOS7-Base-163.repo.j2
+#     dest: /etc/yum.repos.d/CentOS7-Base-163.repo
 
 - name: Setup epel yum mirrors
   template:
     src: epel.repo.j2
     dest: /etc/yum.repos.d/epel.repo
-
-- name: Install package from yum
-  yum:
-    name: "{{ basic_install_pkgs }}"
-    state: latest

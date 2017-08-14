@@ -10,6 +10,7 @@
   with_items:
     - "{{ nginx_log_dir }}"
     - "{{ nginx_root_dir }}"
+    - "{{ nginx_sites.root[0:-11] }}"
 
 - name: Ensure RPM official nginx key
   rpm_key: key=http://nginx.org/keys/nginx_signing.key

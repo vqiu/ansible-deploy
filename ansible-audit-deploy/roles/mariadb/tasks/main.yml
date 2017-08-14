@@ -19,4 +19,4 @@
     src: my.cnf.j2
     dest: "{{ mariadb_config_file }}"
   notify:
-      restart mairadb
+      restart mariadb

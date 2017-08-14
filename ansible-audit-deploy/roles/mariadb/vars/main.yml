@@ -4,8 +4,8 @@ mariadb_install_pkgs:
   - mariadb
   - mariadb-server
 mariadb_config_file: /etc/my.cnf
-mariadb_owner: mariadb
-mariadb_service_name: "{{ mariadb_owner }}"
+mariadb_owner: mysql
+mariadb_service_name: mariadb
 mariadb_bind_address: 127.0.0.1
 mariadb_data_dir: /data/dbs/mysql
 mariadb_charaset: utf-8

@@ -1,7 +1,9 @@
 ---
-    
+
 - name: Install the redis packages
-  yum: name=ntp state={{ redis_install_pkgs }}
+  yum:
+    name: "{{ redis_install_pkgs }}"
+    state: latest
 
 - name: Create directory for redis
   file:
@@ -15,6 +17,8 @@
     - "{{ redis_data_dir }}"
 
 - name: Copy the ntp.conf template file
-  template: src=redis.conf.j2 dest={{ redis_config_file }}
+  template:
+     src: redis.conf.j2
+     dest: "{{ redis_config_file }}"
   notify:
   - restart redis

@@ -1,4 +1,8 @@
 ---
+    
+- name: Install the redis packages
+  yum: name=ntp state={{ redis_install_pkgs }}
+
 - name: Create directory for redis
   file:
     path: "{{ item }}"
@@ -9,9 +13,6 @@
   with_items:
     - "{{ redis_log_dir }}"
     - "{{ redis_data_dir }}"
-
-- name: Install the redis packages
-  yum: name=ntp state={{ redis_install_pkgs }}
 
 - name: Copy the ntp.conf template file
   template: src=redis.conf.j2 dest={{ redis_config_file }}

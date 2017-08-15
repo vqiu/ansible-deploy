@@ -11,6 +11,7 @@
     - ntp
     - security
     - hugepage
+    - redis
     - influxdb
     - mariadb
     - php-fpm

@@ -8,6 +8,6 @@
   with_items:
     - postfix.service
     - lvm2-monitor.service
-#    - auditd.service
+    - auditd.service
     - irqbalance.service
   ignore_errors: True

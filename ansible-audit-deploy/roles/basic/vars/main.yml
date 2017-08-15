@@ -1,12 +1,12 @@
 ---
 basic_selinux_file: /etc/selinux/config
 basic_selinux_stats: "Disabled"
-basic_terminal_timeout: 1800
 basic_install_pkgs:
  - libselinux-python
 # - libsemanage-python
 # - policycoreutils-python
  - wget
+ - iptables-services
  - lrzsz
  - net-tools
  - bash-completion
@@ -55,6 +55,16 @@ basic_sysctl_config_params:
   - net.ipv6.conf.all.disable_ipv6 = 1
   - net.ipv6.conf.default.disable_ipv6 = 1
   - net.ipv6.conf.lo.disable_ipv6 = 1
+  - kernel.kptr_restrict = 2
+  - kernel.sysrq = 0
+  - net.ipv4.conf.all.accept_redirects = 0
+  - net.ipv4.conf.all.log_martians = 1
+  - net.ipv4.conf.all.send_redirects = 0
+  - net.ipv4.conf.default.accept_redirects = 0
+  - net.ipv4.conf.default.log_martians = 1
+  - net.ipv4.tcp_timestamps = 0
+  - net.ipv6.conf.all.accept_redirects = 0
+  - net.ipv6.conf.default.accept_redirects = 0
 
 basic_limited_file: /etc/security/limits.d/10-limited.conf
 basic_max_limited_files: 1024000

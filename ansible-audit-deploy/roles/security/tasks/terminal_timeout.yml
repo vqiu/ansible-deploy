@@ -4,4 +4,4 @@
   template:
     src: terminal_timeout.sh.j2
     dest: "{{ security_terminal_timeout_file }}"
-    mode: 0755
+    mode: 0640

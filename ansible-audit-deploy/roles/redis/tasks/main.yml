@@ -1,0 +1,19 @@
+---
+- name: Create directory for redis
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0755
+    owner: "{{ redis_owner }}"
+    group: "{{ redis_owner }}"
+  with_items:
+    - "{{ redis_log_dir }}"
+    - "{{ redis_data_dir }}"
+
+- name: Install the redis packages
+  yum: name=ntp state={{ redis_install_pkgs }}
+
+- name: Copy the ntp.conf template file
+  template: src=redis.conf.j2 dest={{ redis_config_file }}
+  notify:
+  - restart redis

@@ -6,6 +6,7 @@ service_name: "{{ version }}-php-fpm.service"
 yum_pkgs:
   - "{{ version }}-php-fpm"
   - "{{ version }}-php-pdo"
+  - "{{ version }}-php-mysqlnd"
   - "{{ version }}-php-opcache"
   - "{{ version }}-php-mcrypt"
   - "{{ version }}-php-curl"

@@ -1,12 +1,9 @@
 ---
 
-- name: Fetch selinux status
-  command: getenforce
-  register: selinux_stats
-
 - name: Turn off selinux by command
   command: setenforce 0
   when: not selinux_stats == "Disabled"
+  ignore_errors: True
 
 - name: Turn off selinux by config file
   lineinfile:
@@ -17,4 +14,4 @@
   with_items:
     - regexp: "^SELINUX="
       line: "SELINUX={{ basic_selinux_stats }}"
-  when: not selinux_stats == "Disabled" 
+  when: not selinux_stats == "Disabled"

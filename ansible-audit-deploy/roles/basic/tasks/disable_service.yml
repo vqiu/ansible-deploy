@@ -1,5 +1,5 @@
 ---
-  
+
 - name: Disable unnecessary service[s]
   service:
     name: "{{ item }}"
@@ -10,3 +10,4 @@
     - lvm2-monitor.service
 #    - auditd.service
     - irqbalance.service
+  ignore_errors: True

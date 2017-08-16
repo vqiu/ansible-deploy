@@ -27,17 +27,17 @@
 
 - name: Create database
   mysql_db:
-      name: "{{ mariadb.name }}"
+      name: "{{ mariadb_name }}"
       state: present
   when: mariadb.name is defined
   ignore_errors: True
 
 - name: Create database user
   mysql_user:
-      name: "{{ mariadb.username }}"
-      password: "{{ mariadb.password }}"
-      priv: "{{ mariadb.name }}.*:ALL"
+      name: "{{ mariadb_username }}"
+      password: "{{ mariadb_password }}"
+      priv: "{{ mariadb_name }}.*:ALL"
       host: '127.0.0.1'
       state: present
-  when: mariadb.username is defined and mariadb.password is defined and mariadb.name defined
+  when: mariadb_username is defined and mariadb_password is defined
   ignore_errors: True

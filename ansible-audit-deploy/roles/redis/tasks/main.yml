@@ -24,7 +24,7 @@
     - "{{ redis_log_dir }}"
     - "{{ redis_data_dir }}"
 
-- name: Copy the ntp.conf template file
+- name: Copy the redis.conf template file
   template:
      src: redis.conf.j2
      dest: "{{ redis_config_file }}"

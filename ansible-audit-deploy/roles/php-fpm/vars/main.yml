@@ -16,9 +16,9 @@ yum_pkgs:
   - "{{ version }}-php-cli"
   - "{{ version }}-php-devel"
 
-owner: wdd
-owner_uid: 2000
-owner_gid: 2000
+php_owner: "{{ owner }}"
+owner_gid: "{{ gid }}"
+owner_uid: "{{ uid }}"
 php_fpm_log_dir: /data/logs/php-fpm
 session_dir: /var/lib/php/session
 php_ini_file: "/etc/opt/remi/{{ version }}/php.ini"
@@ -35,11 +35,11 @@ php_ini_config_params:
 
 php_fpm_config_params:
  - [www]
- - user = "{{ owner}}"
- - group = "{{ owner }}"
+ - user = "{{ php_owner}}"
+ - group = "{{ php_owner }}"
  - listen = 127.0.0.1:9000
- - listen.owner = "{{ owner }}"
- - listen.group = "{{ owner }}"
+ - listen.owner = "{{ php_owner }}"
+ - listen.group = "{{ php_owner }}"
  - listen.allowed_clients = 127.0.0.1
  - pm = static
  - pm.max_children = 50

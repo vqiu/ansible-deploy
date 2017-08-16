@@ -1,0 +1,8 @@
+---
+# mongodb deploy for WD firewall environment
+
+- hosts: mongodb
+  remote_user: root
+
+  roles:
+    - mongodb

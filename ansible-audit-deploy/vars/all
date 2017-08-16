@@ -1,0 +1,13 @@
+---
+
+owner: wdd
+gid: 2000
+uid: 2000
+
+mariadb:
+  name: audit
+  username: audit_conn
+  password: RklInvM7R1a2qV0soB
+
+redis:
+  password: www.ddos.com

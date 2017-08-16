@@ -5,10 +5,12 @@ nginx_pkgs_name:
 
 nginx_installation_version: stable
 nginx_binary_name: "nginx"
-nginx_service_name: "{{nginx_binary_name}}"
+nginx_service_name: "{{ nginx_binary_name }}"
 nginx_conf_dir: /etc/nginx
 
-nginx_owner: wdd
+nginx_owner: "{{ owner }}"
+owner_gid: "{{ gid }}"
+owner_uid: "{{ uid }}"
 
 nginx_pid_file: "/var/run/{{nginx_service_name}}.pid"
 

@@ -18,5 +18,26 @@
   template:
     src: my.cnf.j2
     dest: "{{ mariadb_config_file }}"
-  notify:
-      restart mariadb
+
+- name: Make sure Mysql Service startup
+  service:
+    name: "{{ mariadb_service_name }}"
+    state: restarted
+    enabled: yes
+
+- name: Create database
+  mysql_db:
+      name: "{{ mariadb.name }}"
+      state: present
+  when: mariadb.name is defined
+  ignore_errors: True
+
+- name: Create database user
+  mysql_user:
+      name: "{{ mariadb.username }}"
+      password: "{{ mariadb.password }}"
+      priv: "{{ mariadb.name }}.*:ALL"
+      host: '127.0.0.1'
+      state: present
+  when: mariadb.username is defined and mariadb.password is defined and mariadb.name defined
+  ignore_errors: True

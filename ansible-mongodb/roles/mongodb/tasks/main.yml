@@ -1,0 +1,92 @@
+---
+
+- name: Install dependency package by YUM
+  yum:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - numactl
+    - libselinux-python
+    - python-pip
+
+- name: Install mongo module of python
+  pip:
+    name: pymongo
+    extra_args: -i https://pypi.tuna.tsinghua.edu.cn/simple
+
+- name: Create directory for tuned
+  file:
+    path: /etc/tuned/no-thp
+    state: directory
+    mode: 0755
+
+- name: Copy tuned.conf to /etc/tuned/no-thp
+  copy:
+    src: tuned.conf
+    dest: /etc/tuned/no-thp/tuned.conf
+
+- name: Switch profile as tuned-adm
+  command: /usr/sbin/tuned-adm profile no-thp
+
+- name: Write the mongodb-org.repo file to YUM repository
+  copy:
+    src: mongodb-org.repo
+    dest: /etc/yum.repos.d/mongodb-org.repo
+
+- name: Install mongodb by YUM
+  yum:
+    name: mongodb-org
+    state: latest
+    enablerepo: mongodb-org
+
+- name: Create directory for log and db
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ owner }}"
+    group: "{{ owner }}"
+  with_items:
+    - "{{ log_dir }}"
+    - "{{ db_dir }}"
+
+- name: Write the /etc/mongod.conf 
+  template:
+    src: mongod.conf.j2
+    dest: /etc/mongod.conf
+
+- name: Write the mongod.service file
+  template:
+    src: mongod.service.j2
+    dest: /usr/lib/systemd/system/mongod.service
+
+- name: Refresh systemd
+  shell: systemctl daemon-reload
+
+- name: Make sure mondodb startup
+  service:
+    name: mongod
+    state: restarted
+    enabled: yes
+
+- name: Set root password
+  mongodb_user:
+    database: admin
+    name: root
+    password: "{{ root_pwd }}"
+    state: present
+    ssl: False
+    roles:
+      - db: admin
+        role: readWrite
+
+- name: Create database and user
+  mongodb_user:
+    login_user: root
+    login_password: "{{ root_pwd }}"
+    database: "{{ db_name }}"
+    name: "{{ db_user }}"
+    password: "{{ db_pwd }}"
+    state: present
+    roles:
+      - db: "{{ db_name }}"
+        role: readWrite

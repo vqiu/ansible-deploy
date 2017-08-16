@@ -1,0 +1,9 @@
+---
+
+log_dir: /data/logs/mongodb
+db_dir: /data/dbs/mongodb
+owner: mongod
+root_pwd: BVR9sDzbcKIhwuZOrOeY
+db_name: wf_api
+db_user: dev
+db_pwd: wtJZ3cp2623NxMLjCWTN

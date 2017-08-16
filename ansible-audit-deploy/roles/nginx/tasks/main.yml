@@ -1,4 +1,15 @@
 ---
+- name: Create group
+  group:
+    name: "{{ nginx_owner }}"
+    gid: "{{ owner_gid }}"
+
+- name: Create user
+  user:
+    name: "{{ nginx_owner }}"
+    uid: "{{ owner_uid }}"
+    shell: /sbin/nologin
+    createhome: no
 
 - name: Create directory for nginx
   file:

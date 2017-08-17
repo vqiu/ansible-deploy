@@ -15,6 +15,7 @@ yum_pkgs:
   - "{{ version }}-php-xml"
   - "{{ version }}-php-cli"
   - "{{ version }}-php-devel"
+  - "{{ version }}-php-soap"
 
 php_owner: "{{ owner }}"
 owner_gid: "{{ gid }}"
@@ -32,6 +33,7 @@ php_ini_config_params:
   - upload_max_filesize=10M
   - post_max_size=20M
   - memory_limit=128M
+  - soap.wsdl_cache_ttl=86400
 
 php_fpm_config_params:
  - [www]
